@@ -3,6 +3,7 @@
 #include <string>
 
 class Item {
+public:
     Item(std::string title, std::string author, std::string category);
 
     std::string get_title();
