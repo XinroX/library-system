@@ -16,6 +16,6 @@ set(LIBRARY_HEADERS
     reader.hh
     library.hh
 )
-
+add_executable(runTests library_tests.cc)
 add_library(library SHARED ${LIBRARY_HEADERS} ${LIBRARY_SOURCES})
 target_include_directories(library PUBLIC "./")
