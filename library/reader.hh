@@ -12,8 +12,9 @@ class Reader : public User {
 public:
     Reader(std::string first_name, std::string last_name, std::string number);
     void add_item(std::shared_ptr<Item> item);
+    Items get_items();
 private:
-Items items;
+    Items items;
 };
 
 
