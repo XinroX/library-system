@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.20)
+project(HttpServer)
+find_package(cpprestsdk REQUIRED)
+add_executable(HttpServer main.cpp server.cpp)
+target_link_libraries(HttpServer PRIVATE cpprestsdk::cpprest)
