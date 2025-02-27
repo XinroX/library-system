@@ -10,12 +10,6 @@ set(LIBRARY_SOURCES
     library.cc
 )
 
-set(LIBRARY_HEADERS
-    user.hh
-    item.hh
-    reader.hh
-    library.hh
-)
 add_executable(runTests library_tests.cc)
-add_library(library SHARED ${LIBRARY_HEADERS} ${LIBRARY_SOURCES})
+add_library(library SHARED ${LIBRARY_SOURCES})
 target_include_directories(library PUBLIC "./")
