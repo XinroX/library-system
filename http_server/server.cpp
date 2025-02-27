@@ -1,4 +1,6 @@
 #include "server.hpp"
+#include <cpprest/json.h>
+#include "lib_mock.hpp"
 
 Server::Server(const std::string& uri) : _listener(uri)
 {
@@ -56,7 +58,27 @@ void Server::handleGet(const web::http::http_request& request)
 
 web::http::http_response Server::getAllBooks()
 {
-    return web::http::http_response();
+    web::json::value result;
+    web::http::http_response response;
+    std::vector<Item> items = _librarySystem->getAllItems();
+    std::map<std::string, std::vector<web::json::value>> categoryMap;
+    std::for_each(items.begin(), items.end(), [&](const Item& item){
+        web::json::value value;
+        value["author"] = web::json::value::string(item.getAuthor());
+        value["title"] = web::json::value::string(item.getTitle());
+        categoryMap[item.getCategory()].emplace_back(value);
+    });
+    std::vector<web::json::value> category;
+    for (const auto& key : categoryMap)
+    {
+        web::json::value value;
+        value[key.first] = web::json::value::array(key.second);
+        category.emplace_back(value);
+    }
+    result["categories"] = web::json::value::array(category);
+    response.set_body(result);
+    response.set_status_code(web::http::status_codes::OK);
+    return response;
 }
 
 web::http::http_response Server::getAvailableBooks()

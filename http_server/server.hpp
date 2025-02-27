@@ -1,5 +1,6 @@
 #pragma once
 #include <cpprest/http_listener.h>
+#include "interfaces/ilibrary.hpp"
 
 class Server
 {
@@ -12,4 +13,6 @@ private:
     web::http::http_response getAvailableBooks();
     web::http::http_response getUserBooks(const web::json::value& request);
     web::http::experimental::listener::http_listener _listener;
+
+    std::unique_ptr<ILibrary> _librarySystem;
 };
