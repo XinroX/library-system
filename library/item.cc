@@ -5,14 +5,14 @@ Item::Item(std::string title, std::string author, std::string category)
 {
 }
 
-std::string Item::get_author() {
+std::string Item::getAuthor() const {
     return author;
 }
 
-std::string Item::get_title() {
+std::string Item::getAuthor() const {
     return title;
 }
 
-std::string Item::get_category() {
+std::string Item::getTitle() const {
     return category;
 }
