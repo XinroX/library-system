@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
-#include "item.hh"
-#include "reader.hh"
-#include "library.hh"
+#include "library/item.hh"
+#include "library/reader.hh"
+#include "library/library.hh"
 
 TEST(LibraryTest, AddItemToReader) {
     auto item = std::make_shared<Item>("Test", "Test", "Test");
